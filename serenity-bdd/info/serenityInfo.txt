@@ -1,0 +1,12 @@
+    Перепилив на стэпы мы можем теперь выпилить webDriver везде, где он юзается. Serenity берет всю логику работы
+        с драйвером на себя.
+
+        driver.findElement() -> find()
+        driver.findElements() -> findAll()
+        WebElement -> WebElementFacade
+
+         new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath(String.format(monthDropDownOptions, month.getName())))).click(); ->
+
+                    -> find(By.xpath(String.format(monthDropDownOptions, month.getName()))).waitUntilVisible().click();

@@ -55,7 +55,7 @@ public class SignUpSteps {
     }
 
     @Step("Set sex radioButton {0}")
-    public void setAdvCheckBox(SignUpPageGender gender) {
+    public void setGender(SignUpPageGender gender) {
         page.setSexRadioButton(gender);
     }
 
@@ -67,5 +67,10 @@ public class SignUpSteps {
     @Step("Finding errors")
     public boolean findErrors(int expectedErrors) {
         return page.findErrors().size() > expectedErrors;
+    }
+
+    @Step("Close privacy")
+    public void closePrivacy() {
+         page.closePrivacy();
     }
 }
