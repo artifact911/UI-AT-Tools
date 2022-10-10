@@ -1,0 +1,2 @@
+1. Установим плагин Jbehave Support - этот плагин будет поддерживать jbehave story files.
+2. Мы можем юзать стэпы от serenity а можем написать на jbehave;
