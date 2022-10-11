@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.11.0"
+}
+
+group 'org.art'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = 11
+    targetCompatibility = 11
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    testImplementation 'org.testng:testng:7.6.1'
+
+    implementation 'io.cucumber:cucumber-java:7.8.1'
+//    implementation 'io.cucumber:cucumber-testng:7.8.1'
+
+    testImplementation 'io.cucumber:cucumber-junit:7.8.1'
+
+    implementation 'com.codeborne:selenide:6.9.0'
+}
+
+test {
+    useTestNG()
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty',
+                    '--glue', 'org.art.orange.definitions', 'src/test/resources']
+        }
+    }
+}

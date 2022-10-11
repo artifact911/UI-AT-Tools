@@ -1,4 +1,6 @@
 rootProject.name = 'at-Tools-java'
 include 'serenity-bdd'
 include 'jbehave-serenity-bdd'
+include 'cucumber-selenide-testng'
+include 'cucumber-selenium-junit'
 
