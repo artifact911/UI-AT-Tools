@@ -12,5 +12,5 @@ import static com.codeborne.selenide.Selenide.$;
 public class HomePage {
 
 //    @FindBy(xpath = "//p[text()='Paul Collings']")
-    private final SelenideElement homePageUserName = $(By.xpath("//p[text()='Paul Collings']"));
+    private final SelenideElement homePageUserName = $(By.xpath("//h6"));
 }
