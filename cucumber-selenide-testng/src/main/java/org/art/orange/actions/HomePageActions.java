@@ -1,20 +1,13 @@
 package org.art.orange.actions;
 
-import com.codeborne.selenide.WebDriverRunner;
-import org.art.orange.driver.HelperClass;
+import com.codeborne.selenide.Condition;
 import org.art.orange.pages.HomePage;
-import org.openqa.selenium.support.PageFactory;
 
 public class HomePageActions {
 
-    private final HomePage homePage;
-
-    public HomePageActions() {
-        this.homePage = new HomePage();
-        PageFactory.initElements(HelperClass.getDriver(), homePage);
-    }
+    private final HomePage homePage = new HomePage();
 
     public String getHomePageUserName() {
-        return homePage.getHomePageUserName().getText();
+        return homePage.getHomePageUserName().shouldBe(Condition.visible).getText();
     }
 }

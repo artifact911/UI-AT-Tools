@@ -1,30 +1,23 @@
 package org.art.orange.actions;
 
-import com.codeborne.selenide.WebDriverRunner;
-import org.art.orange.driver.HelperClass;
+import com.codeborne.selenide.Condition;
 import org.art.orange.pages.LoginPage;
-import org.openqa.selenium.support.PageFactory;
 
 public class LoginPageActions {
 
-    private final LoginPage loginPage;
-
-    public LoginPageActions() {
-        this.loginPage = new LoginPage();
-        PageFactory.initElements(HelperClass.getDriver(), loginPage);
-    }
+    private final LoginPage loginPage = new LoginPage();
 
     public void login(String name, String password) {
-        loginPage.getUserName().sendKeys(name);
-        loginPage.getPassword().sendKeys(password);
-        loginPage.getLogin().click();
+        loginPage.getUserName().shouldBe(Condition.visible).sendKeys(name);
+        loginPage.getPassword().shouldBe(Condition.visible).sendKeys(password);
+        loginPage.getLogin().shouldBe(Condition.visible).click();
     }
 
     public String getErrorMessage() {
-        return loginPage.getErrorMessage().getText();
+        return loginPage.getErrorMessage().shouldBe(Condition.visible).getText();
     }
 
     public String getReqNameMessage() {
-        return loginPage.getReqNameMessage().getText();
+        return loginPage.getReqNameMessage().shouldBe(Condition.visible).getText();
     }
 }
