@@ -17,3 +17,31 @@ Then:
 
 Делаем так: public class AcceptanceTest extends SerenityStories
 Делаем так: public class SignupBasics extends SerenityStory - класс имеет название как сториФайл
+
+Example: (ставим плагин для выравнивания таблицы Pipe Table Formatter)
+    Параметры для тестов:
+        | month   | day | year | sex     |
+        | Январь  | 15  | 1985 | Женщина |
+        | Февраль | 2   | 1990 | Мужчина |
+        | Декабрь | 4   | 1939 | Женщина |
+
+Meta: @skip - пропустим сценарий где написали
+
+        Scenario
+        Meta: @skip
+        Given I open signup page
+        When I set day "<day>"
+
+Lifecycle - позволяет вынести что-то общее для всех сценариев
+        Lifecycle:
+        Before:
+        Given I open signup page
+    Описали что будем делать ДО сценариев
+
+         Lifecycle:
+         After:
+         Outcome:
+            - ANY
+            - SUCCESS
+            - FAILURE
+    Описали какие степы сы можем выполнить после каждого/успешного/зафеленого сценария

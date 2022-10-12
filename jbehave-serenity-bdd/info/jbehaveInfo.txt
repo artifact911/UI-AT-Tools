@@ -1,2 +1,14 @@
 1. Установим плагин Jbehave Support - этот плагин будет поддерживать jbehave story files.
 2. Мы можем юзать стэпы от serenity а можем написать на jbehave;
+3. Можно передавать в метод степа целую таблицу через класс ExamplesTable:
+    When I set date:
+    | month   | day | year |
+    | Декабрь | 10  | 1999 |
+
+    @When("I set date: $table")
+        public void setDate(ExamplesTable table) {
+            Map<String, String> date = table.getRow(0);
+            steps.setMonth(date.get("month"));
+            steps.setDay(date.get("day"));
+            steps.setYear(date.get("year"));
+        }

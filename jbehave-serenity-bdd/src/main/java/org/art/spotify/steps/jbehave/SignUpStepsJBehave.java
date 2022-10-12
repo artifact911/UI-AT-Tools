@@ -5,6 +5,9 @@ import org.art.spotify.steps.serenity.SignUpSteps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.jbehave.core.model.ExamplesTable;
+
+import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
 
@@ -16,6 +19,15 @@ public class SignUpStepsJBehave {
     @Given("I open signup page")
     public void openPage() {
         steps.openSignUp();
+    }
+
+    @When("I set date: $table")
+    public void setDate(ExamplesTable table) {
+        Map<String, String> date = table.getRow(0);
+
+        steps.setDay(date.get("day"));
+        steps.setYear(date.get("year"));
+        steps.setMonth(date.get("month"));
     }
 
     @When("I set day \"$day\"")
