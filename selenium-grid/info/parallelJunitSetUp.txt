@@ -1,0 +1,49 @@
+Как распараллелить:
+
+1. Configuration to enable parallel execution
+
+Создаем файлик в src/test/resources junit-platform.properties и прописыывем там в зависимости от желаемого:
+
+    a. Parallel execution for tests classes and test methods:
+        junit.jupiter.execution.parallel.enabled = true
+        junit.jupiter.execution.parallel.mode.default = concurrent
+
+    b. Following configuration enables you to run top-level classes in parallel but methods in same thread:
+        junit.jupiter.execution.parallel.enabled = true
+        junit.jupiter.execution.parallel.mode.default = same_thread
+        junit.jupiter.execution.parallel.mode.classes.default = concurrent
+
+    c. Following configuration enables you to run top-level classes in sequentially but their methods in parallel:
+        junit.jupiter.execution.parallel.enabled = true
+        junit.jupiter.execution.parallel.mode.default = concurrent
+        junit.jupiter.execution.parallel.mode.classes.default = same_thread
+
+2. @Execution annotation
+    @Execution annotation is used to change the mode of test class or test methods individually.
+    There are 2 modes, CONCURRENT mode and SAME_THREAD mode.
+        - SAME_THREAD : Force execution in the same thread used by the parent.
+        - CONCURRENT : Execute concurrently unless a resource lock forces execution in the same thread.
+
+        @Execution(ExecutionMode.CONCURRENT) // note: propagates downstream!
+        class MyParallelTest { // runs in parallel with other test classes
+
+            @Test
+            @Execution(ExecutionMode.CONCURRENT)
+            void shouldVerifySomethingImportant() {
+                // runs in parallel with other test cases
+                // (would behave the same without the annotation - inherited)
+            }
+
+            @Test
+            @Execution(ExecutionMode.SAME_THREAD)
+            void shouldVerifySomethingImportantSequentially() {
+                // runs in the same thread as its parent (override)
+            }
+        }
+
+3. Gradle. maxParallelForks - распараллелит по классам. Методы - нет
+
+    test {
+        useJUnitPlatform()
+        maxParallelForks = 8
+    }

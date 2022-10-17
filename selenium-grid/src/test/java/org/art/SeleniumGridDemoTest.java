@@ -22,9 +22,9 @@ public class SeleniumGridDemoTest {
 
         // для запуска на Grid:
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setBrowserName("safari");
+        caps.setBrowserName("chrome");
 
-        WebDriver driver = new RemoteWebDriver(new URL("http://192.168.111.214:4444"), caps);
+        WebDriver driver = new RemoteWebDriver(new URL("http://192.168.100.40:4444"), caps);
 
         driver.get("https://www.google.com");
         driver.findElement(By.name("q")).sendKeys("Selenium Grid 4");

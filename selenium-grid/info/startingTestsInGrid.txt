@@ -20,3 +20,5 @@
     ... node --detect-drivers true --publish-events tcp://192.168.1.11:4442 --subscribe-events tcp://192.168.1.11:4443
             --publish-events tcp://192.168.1.11:4442 - ip моего хаба и порт указан в консоле в строке XPUB
             --subscribe-events tcp://192.168.1.11:4443 - ip моего хаба и порт указан в консоле в строке XSUB
+
+5. Распараллеливаем тесты и запускаем
