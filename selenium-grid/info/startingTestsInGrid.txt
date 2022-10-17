@@ -1,0 +1,22 @@
+        https://www.selenium.dev/documentation/grid/getting_started/
+
+1. Качаем необходимые драйверы и кладем в одну папку с grid.
+2. Старутем Grid:
+    - переходим в cmd в папку, где лежит грид
+    - java -jar selenium-server-4.5.0.jar hub - в консоле будет написано по какому адресу стартанул Grid
+
+3. Создаем ноды локально:
+    - переходим в cmd в папку, где лежит грид
+        a. java -jar selenium-server-4.5.0.jar node --detect-drivers true - в Grid появится нода с браузерами
+            драйвера которых лежат в папке с grid.
+            --detect-drivers true - запускал без этого - работает;
+
+        b. java -jar selenium-server-4.5.0.jar node --port 5555 - одна нода;
+           java -jar selenium-server-4.5.0.jar node --port 6666 - вторая нода;
+
+4. Удаленные ноды. https://www.youtube.com/watch?v=P5CLXIC7x5c&ab_channel=RahulShettyAcademy
+    - Качаем необходимые драйверы и кладем в одну папку с grid.
+    - запускаем удаленно ноду:
+    ... node --detect-drivers true --publish-events tcp://192.168.1.11:4442 --subscribe-events tcp://192.168.1.11:4443
+            --publish-events tcp://192.168.1.11:4442 - ip моего хаба и порт указан в консоле в строке XPUB
+            --subscribe-events tcp://192.168.1.11:4443 - ip моего хаба и порт указан в консоле в строке XSUB
