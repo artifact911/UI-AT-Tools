@@ -4,4 +4,5 @@ include 'jbehave-serenity-bdd'
 include 'cucumber-selenide-testng'
 include 'cucumber-selenium-junit'
 include 'selenium-grid'
+include 'jenkins'
 
